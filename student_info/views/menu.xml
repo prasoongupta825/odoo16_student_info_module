@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- <odoo>
+    <data>
+        <record model="ir.actions.act_window" id="action_student">
+            <field name="name">Students</field>
+            <field name="res_model">student.info</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_student" name="Students" sequence="10"/>
+        <menuitem id="menu_student_info" name="Student Information" parent="menu_student" sequence="10"/>
+        <menuitem id="menu_student_list" name="Student List" parent="menu_student_info" action="action_student" sequence="10"/>
+    </data>
+</odoo> -->
+<odoo>
+    <data>
+        <menuitem id="menu_student_info" name="Student Info" sequence="10"/>
+        <menuitem id="menu_student" name="Students" parent="menu_student_info" action="action_student" sequence="10"/>
+    </data>
+</odoo>

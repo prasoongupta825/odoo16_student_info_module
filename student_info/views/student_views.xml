@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_student_form">
+            <field name="name">student.info.form</field>
+            <field name="model">student.info</field>
+            <field name="arch" type="xml">
+                <form string="Student Information">
+                    <header>
+                        <button name="assign_roll_number" string="Assign Roll Number" type="object" class="oe_highlight" attrs="{'invisible': [('roll_number', '!=', False)]}"/>
+                    </header>
+                    <sheet>
+                        <group string="Personal Info">
+                            <field name="name"/>
+                            <field name="father_name"/>
+                            <field name="email"/>
+                            <field name="contact_info"/>
+                        </group>
+                        <group string="Academic Info">
+                            <field name="roll_number" readonly="1"/>
+                            <field name="class_id"/>
+                            <field name="semester"/>
+                            <field name="section"/>
+                        </group>
+                        <notebook>
+                            <page string="Assessments">
+                                <field name="assessment_ids" mode="tree">
+                                    <tree editable="bottom">
+                                        <field name="subject"/>
+                                        <field name="teacher"/>
+                                        <field name="total_marks"/>
+                                        <field name="obtained_marks"/>
+                                        <field name="percentage" readonly="1"/>
+                                        <field name="grade" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Second Assessment">
+                                <field name="assessment_ids" mode="tree" attrs="{'invisible': [('assessment_ids', '!=', False)]}">
+                                    <tree editable="bottom">
+                                        <field name="subject"/>
+                                        <field name="teacher"/>
+                                        <field name="total_marks"/>
+                                        <field name="obtained_marks"/>
+                                        <field name="percentage" readonly="1"/>
+                                        <field name="grade" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Final Exam">
+                                <field name="assessment_ids" mode="tree" attrs="{'invisible': [('assessment_ids', '!=', False)]}">
+                                    <tree editable="bottom">
+                                        <field name="subject"/>
+                                        <field name="teacher"/>
+                                        <field name="total_marks"/>
+                                        <field name="obtained_marks"/>
+                                        <field name="percentage" readonly="1"/>
+                                        <field name="grade" readonly="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group string="Overall Grade">
+                            <field name="overall_grade" readonly="1"/>
+                            <field name="total_marks" readonly="1"/>
+                            <field name="total_percentage" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_student_tree">
+            <field name="name">student.info.tree</field>
+            <field name="model">student.info</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="roll_number"/>
+                    <field name="class_id"/>
+                    <field name="semester"/>
+                    <field name="section"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_student">
+            <field name="name">Students</field>
+            <field name="res_model">student.info</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_student" name="Students" action="action_student" sequence="10"/>
+    </data>
+</odoo>

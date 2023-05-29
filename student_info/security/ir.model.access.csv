@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_info_user,Student Info User,model_student_info,base.group_user,1,0,0,0
+access_student_info_manager,Student Info Manager,model_student_info,base.group_erp_manager,1,1,1,1
+access_student_assessment_user,Student Assessment User,model_student_assessment,base.group_user,1,0,0,0
+access_student_assessment_manager,Student Assessment Manager,model_student_assessment,base.group_erp_manager,1,1,1,1
+access_student_class_user,Student Class User,model_student_class,base.group_user,1,0,0,0
+access_student_class_manager,Student Class Manager,model_student_class,base.group_erp_manager,1,1,1,1
