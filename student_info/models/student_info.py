@@ -1,4 +1,6 @@
 from odoo import models, fields, api
+from . import student_roll_number_sequence
+import re
 
 
 class Student(models.Model):
@@ -27,18 +29,21 @@ class Student(models.Model):
     # Button to assign roll number
     def assign_roll_number(self):
         if not self.roll_number:
-            sequence = self.env['ir.sequence'].next_by_code('student.roll.number')
+            sequence = self.env['student.roll.number.sequence'].next_by_code('student.roll.number')
             if sequence:
-                formatted_sequence = f"{sequence[:2]}-{sequence[2:4]}-{sequence[4:]}"
+                numeric_part = re.sub("[^0-9]", "", sequence)
+                formatted_sequence = "{}-{}-{}".format(sequence[:2], sequence[2:4], numeric_part.zfill(3))
                 self.roll_number = formatted_sequence
-                self.env['ir.sequence'].toggle_active('student.roll.number')
+
 
     # Hide the assign_roll_number button if roll number is assigned
     @api.onchange('roll_number')
     def _onchange_roll_number(self):
         if self.roll_number:
-            self.env['ir.sequence'].toggle_active('student.roll.number', False)
-
+            sequence = self.env['student.roll.number.sequence'].sudo().search([('name', '=', 'Student Roll Number Sequence')])
+            if sequence:
+                sequence.active = False
+    
     # Compute overall grade based on assessments
     @api.depends('assessment_ids.grade')
     def _compute_overall_grade(self):
@@ -103,3 +108,9 @@ class StudentClass(models.Model):
     _description = 'Student Class'
 
     name = fields.Char(string='Name')
+
+
+
+
+
+    

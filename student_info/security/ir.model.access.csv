@@ -5,3 +5,5 @@ access_student_assessment_user,Student Assessment User,model_student_assessment,
 access_student_assessment_manager,Student Assessment Manager,model_student_assessment,base.group_erp_manager,1,1,1,1
 access_student_class_user,Student Class User,model_student_class,base.group_user,1,0,0,0
 access_student_class_manager,Student Class Manager,model_student_class,base.group_erp_manager,1,1,1,1
+access_student_roll_number_sequence_user,Student Roll Number Sequence User,model_student_roll_number_sequence,base.group_user,1,0,0,0
+access_student_roll_number_sequence_manager,Student Roll Number Sequence Manager,model_student_roll_number_sequence,base.group_erp_manager,1,1,1,1
